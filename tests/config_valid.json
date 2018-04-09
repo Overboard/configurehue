@@ -1,0 +1,62 @@
+{
+	"name": "Philips hue",
+	"zigbeechannel": 25,
+	"bridgeid": "001788FFFE4E7DAD",
+	"mac": "00:17:88:4e:7d:ad",
+	"dhcp": true,
+	"ipaddress": "192.168.0.13",
+	"netmask": "255.255.255.0",
+	"gateway": "192.168.0.1",
+	"proxyaddress": "none",
+	"proxyport": 0,
+	"UTC": "2018-04-02T14:47:41",
+	"localtime": "none",
+	"timezone": "none",
+	"modelid": "BSB002",
+	"swversion": "01033990",
+	"apiversion": "1.14.0",
+	"swupdate": {
+		"updatestate": 0,
+		"checkforupdate": false,
+		"devicetypes": {
+			"bridge": false,
+			"lights": [],
+			"sensors": []
+		},
+		"url": "",
+		"text": "",
+		"notify": false
+	},
+	"linkbutton": false,
+	"portalservices": false,
+	"portalconnection": "connected",
+	"portalstate": {
+		"signedon": true,
+		"incoming": false,
+		"outgoing": true,
+		"communication": "disconnected"
+	},
+	"factorynew": false,
+	"replacesbridgeid": null,
+	"backup": {
+		"status": "idle",
+		"errorcode": 0
+	},
+	"whitelist": {
+		"H8g2JmXymYfA6xXc6g7ylsopHQuYAcbAjYwmsC1k": {
+			"last use date": "2017-08-12T18:25:15",
+			"create date": "2017-05-15T22:56:44",
+			"name": "Huetro#Windows.Desktop"
+		},
+		"4zXauu2IWv7u4UsmvRnQ81oDCni5p3JzMSM2mUXf": {
+			"last use date": "2017-07-22T13:44:08",
+			"create date": "2017-06-11T14:33:10",
+			"name": "HueDriver#AMW"
+		},
+		"RxH8zQ0ERXovk1vPKybG06uVbK3M4fdHwOuxLLEB": {
+			"last use date": "2018-04-02T14:47:41",
+			"create date": "2017-05-15T23:23:14",
+			"name": "my_hue_app#AMWDesktop"
+		}
+	}
+}

@@ -1,0 +1,48 @@
+{
+    "0017884e7dad": {
+        "name": "Philips hue",
+        "bridgeid": "001788FFFE4E7DAD",
+        "ipaddress": "http://192.168.0.13:80/",
+        "whitelist": {
+            "ffffffffe0341b1b376a2389376a2389": {
+                "name": "PhilipsHueAndroidApp#TCT ALCATEL ONE TOU"
+            },
+            "pAtwdCV8NZId25Gk": {
+                "name": "MyApplication"
+            },
+            "RxH8zQ0ERXovk1vPKybG06uVbK3M4fdHwOuxLLEB": {
+                "name": "configurehue#AMW"
+            }
+        }
+    },
+    "001788102201": {
+        "name": "Philips hue",
+        "bridgeid": "001788FFFE102201",
+        "ipaddress": "",
+        "whitelist": {
+            "mocknameconfigurehue#amw": {
+                "name": "configurehue#AMW"
+            }
+        }
+    },
+    "001788102202": {
+        "name": "Philips hue",
+        "bridgeid": "001788FFFE102202",
+        "ipaddress": "",
+        "whitelist": {
+            "mocknameconfigurehue#amw": {
+                "name": "configurehue#AMW"
+            }
+        }
+    },
+    "001111111111": {
+        "name": "Philips hue",
+        "bridgeid": "001111111111",
+        "ipaddress": "'192.168.0.9",
+        "whitelist": {
+            "mocknameconfigurehue#amw": {
+                "name": "fake#name"
+            }
+        }
+    }
+}
