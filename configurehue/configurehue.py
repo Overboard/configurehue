@@ -199,24 +199,29 @@ def construct_devicetype(appname='configurehue', devname=None):
     return appname[0:20]+'#'+devname[0:19]
     
 
-def get():
+def get(ui=ConsoleInterface()):
 
     devicetype = construct_devicetype()
 
-    ui = ConsoleInterface()
+    # ui = ConsoleInterface()
     storage = CWDStorage()
 
     with storage(devicetype) as bridges_in_cfg:
         previous_bridges = bridges_in_cfg.copy()  # shallow copy should be ok
-        bridges_in_lan = discoverhue.find_bridges(previous_bridges)
+        # TODO: annoyingly, discoverhue does a nop for {} rather than find all
+        if previous_bridges:
+            bridges_in_lan = discoverhue.find_bridges(previous_bridges)
+        else:
+            bridges_in_lan = discoverhue.find_bridges()
 
         # Replace whitelist info dropped by discoverhue
         for sn in bridges_in_lan.keys() & bridges_in_cfg.keys():
             bridges_in_lan[sn] = BridgeURL(bridges_in_lan[sn], bridges_in_cfg[sn].username)
 
-        # Note: discovery does not return SN's not on the list
-        # for sn in bridges_in_lan.keys() - bridges_in_cfg.keys():
-        #     print('Bridges to add {}'.format(sn))
+        # Note: discovery does not return SN's not on the list, but will on find all
+        for sn in bridges_in_lan.keys() - bridges_in_cfg.keys():
+            bridges_in_lan[sn] = BridgeURL(bridges_in_lan[sn])
+            # print('Bridges to add {}'.format(sn))
 
         # Nullify IP's of bridges not located
         for sn in previous_bridges:
@@ -240,9 +245,9 @@ def get():
 
         # unresolved bridges should be removed from return list
         # and the usernames purged from config
-        for sn in keys_to_remove:
-            url_info = bridges_in_lan.pop(sn)
-            bridges_in_cfg[sn].username = None
+        # for sn in keys_to_remove:
+        #     url_info = bridges_in_lan.pop(sn)
+        #     bridges_in_cfg[sn].username = None
 
         # remainder of changes
         bridges_in_cfg.update(bridges_in_lan)
@@ -263,7 +268,7 @@ if __name__ == '__main__':
         format='%(asctime)s.%(msecs)03d %(levelname)s:%(module)s:%(funcName)s: %(message)s', \
         datefmt="%H:%M:%S")
 
-    QhueBridge(BridgeURL('http://192.168.0.13/',None)).create_user()
+    # QhueBridge(BridgeURL('http://192.168.0.13/',None)).create_user()
 
     z = get()
     print(z)
