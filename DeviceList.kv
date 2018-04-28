@@ -1,0 +1,44 @@
+#:kivy 1.10.0
+
+<ScanResult>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        RV:
+            data: root.results
+
+        Button:
+            text: 'Scan button'
+            on_press: root.scan()
+            size_hint_y: 0.10
+
+
+<RVButton@Button>:
+    font_name: 'lucon'
+
+<RV@RecycleView>:
+    viewclass: 'RVButton'
+    RecycleBoxLayout:
+        default_size: None, dp(32)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+
+<LinkPopup@Popup>:
+    auto_dismiss: False
+    size_hint: 0.5,0.5
+    RelativeLayout:
+        AnchorLayout:
+            anchor_y: 'top'
+            Label:
+                text: 'Press link'
+        AnchorLayout:
+            anchor_y: 'bottom'
+            Button:
+                size_hint: None, None
+                size: self.parent.width, 50
+                text: 'Close me!'
+                on_release: root.dismiss()
+
