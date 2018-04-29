@@ -13,13 +13,23 @@
             size_hint_y: 0.10
 
 
-<RVButton@Button>:
-    font_name: 'lucon'
+<RVButton@BoxLayout>:
+    orientation: 'horizontal'
+    hostname: 'None'
+    username: 'None'
+    Button:
+        text: self.parent.hostname
+        size_hint_x: 0.5
+    Label:
+        text: self.parent.username
+
 
 <RV@RecycleView>:
     viewclass: 'RVButton'
     RecycleBoxLayout:
-        default_size: None, dp(32)
+        padding: 4
+        spacing: 4
+        default_size: None, dp(48)
         default_size_hint: 1, None
         size_hint_y: None
         height: self.minimum_height
@@ -33,12 +43,13 @@
         AnchorLayout:
             anchor_y: 'top'
             Label:
-                text: 'Press link'
+                text: 'Press link button on bridge'
+                valign: 'middle'
         AnchorLayout:
             anchor_y: 'bottom'
             Button:
                 size_hint: None, None
                 size: self.parent.width, 50
-                text: 'Close me!'
+                text: 'Click here when ready'
                 on_release: root.dismiss()
 

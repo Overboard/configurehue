@@ -15,20 +15,22 @@ from kivy.properties import ListProperty, ObjectProperty
 from kivy.uix.codeinput import CodeInput
 from kivy.extras.highlight import KivyLexer
 
-from configurehue import InterfaceLayer, get
+from configurehue import UserLayer, Manager
 
 class ScanResult(FloatLayout):
-    results = ListProperty([{'text':r} for r in ['http://10.161.129.197','http://10.161.129.1']])
+    results = ListProperty([{'hostname':r} for r in ['10.161.129.197','10.161.129.1']*10])
 
-    def __init__(self, ki):
-        self.ki = ki
+    def __init__(self, cm):
+        self.cm = cm
         super().__init__()
 
     def schedulable_get(self):
-        self.hues = get(self.ki)
+        self.hues = self.cm.get()
         self.results.clear()
         for hue in self.hues.values():
-            self.results.append({'text':hue.hostname})
+            self.results.append({'hostname':hue.hostname,
+                                 'username':hue.username
+            })
 
     def scan(self):
         import asyncio
@@ -40,7 +42,7 @@ class LinkPopup(Popup):
     pass
 
 
-class KivyInterface(InterfaceLayer):
+class KivyInterface(UserLayer):
     def __init__(self, p):
         self.popupz = p
         self.popupz.bind(on_dismiss=self._kv_popup_dismissed)
@@ -58,8 +60,9 @@ class KivyInterface(InterfaceLayer):
 
 class DeviceListApp(App):
     def build(self):
+        # TODO: why must this be instantiated here to get formatting?
         p = LinkPopup()
-        z = KivyInterface(p)
+        z = Manager(userlayer=KivyInterface(p))
         demo = ScanResult(z)
         return demo
 
